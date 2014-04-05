@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="@Url.Content("~/css/Mobile.css")" />
+    <link rel="stylesheet"  href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" /> 
+   <title>@ViewBag.Title</title>
+     
+</head>
+<body>
+   <div data-role="page" class="type-home" data-theme="b" data-add-back-btn="true"> 
+	<div data-role="header" data-theme="b"> 
+    <div data-inline="true">
+	
+	   @Html.Partial("M/_LogOnPartial") 
+</div>
+<h1 aria-level="1">ITT CompSoc Website</h1>
+@{string controllerName = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString();
+  string actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
+
+  }
+@if (User.IsInRole("Administrator"))
+{
+    controllerName = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString();
+     actionName = ViewContext.Controller.ValueProvider.GetValue("action").RawValue.ToString();
+    
+    <div data-role="navbar" class="ui-navbar ui-navbar-noicons" role="navigation">
+			<ul>
+                @if (controllerName.Equals("Home"))
+                {
+                    //Do Nothing For Now
+                }else if (controllerName.Equals("Gallery"))
+                {
+                    if (actionName.Equals("Index"))
+                    {
+                    <li>@Html.ActionLink("Add Album", "AddAlbum", "Gallery", null, null) </li>
+                    }
+                    if (actionName.Equals("AlbumDetail"))
+                    {
+                    <li>@Html.ActionLink("Add Pictures", "AddPictures", "Gallery", new { id = Model.Id }, new { @class = "no-Ajax ui-btn ui-btn-up-a" })</li>
+                    <li>@Html.ActionLink("Edit Album", "EditAlbum", "Gallery", new { id = Model.Id }, new { @class = "no-Ajax ui-btn ui-btn-up-a" })</li>
+                    <li>@Html.ActionLink("Delete Album", "DeleteAlbum", "Gallery", new { id = Model.Id }, new { @class = "no-Ajax ui-btn ui-btn-up-a" })</li>
+                    }
+
+                } else if (controllerName.Equals("UserProfile"))
+                {
+                    //Do nothing for UserProfile
+                }else
+                {
+                    if (actionName.Equals("Index"))
+                    {
+                    <li>@Html.ActionLink("Add New", "Create", controllerName, null, new { @class = "no-Ajax ui-btn ui-btn-up-a" })</li>
+                    }
+                    if (actionName.Equals("Details"))
+                    {
+                    <li>@Html.ActionLink("Back to List", "Index", "News", new { data_role = "button" })</li>
+                    <li>@Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "no-Ajax ui-btn ui-btn-up-a" })</li>
+                    <li>@Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "no-Ajax ui-btn ui-btn-up-a" })</li>
+                    }
+                }
+			</ul>
+		</div><!-- /navbar -->
+}
+                
+@*                <li>@Html.ActionLink("Home", "Index", "Home",null, new { @class = "no-Ajax ui-btn ui-btn-up-a"}) </li>
+				<li>@Html.ActionLink("About", "About", "Home", null, new { @class = "no-Ajax ui-btn ui-btn-up-a"}) </li>*@
+                  
+    </div>
+    <div data-role="content" data-theme="b">
+      @RenderBody()
+      </div>
+<div data-theme="b" data-role="footer" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top" data-theme="b">
+                    <ul>
+                        <li>
+                              <a href="/Home" data-theme="b" data-icon="home">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/UserProfile/Details" data-theme="b" data-icon="info">
+                                User Profile
+                            </a>
+                        </li>
+                         @if (controllerName.Equals("UserProfile") && actionName.Equals("Details"))
+                         {
+                        <li>
+                            <a href="/UserProfile/Edit" data-theme="b" data-icon="gear">
+                                Edit Profile
+                            </a>
+                        </li>
+                         }
+                    </ul>
+                </div>
+            </div>
+    </div>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.6.4.min.js"></script>
+<script> window.jQuery || document.write(unescape("%3Cscript src='@Url.Content("~/Scripts/jquery-1.6.4.min.js")'%3E%3C/script%3E"))</script>
+   <script type="text/javascript">
+
+       $(document).bind("mobileinit", function () {
+
+       });
+
+       
+ 
+   </script>
+   <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script> 
+   <script> window.jQuery || document.write(unescape("%3Cscript src='@Url.Content("~/Scripts/jquery.mobile-1.0.min.js")'%3E%3C/script%3E"))</script>
+
+   <script src="/Scripts/jquery.touch-gallery-1.0.0.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.touch-gallery-1.0.0.min.js" type="text/javascript"></script>
+   
+   @RenderSection("scripts", false)
+</body>
+</html>

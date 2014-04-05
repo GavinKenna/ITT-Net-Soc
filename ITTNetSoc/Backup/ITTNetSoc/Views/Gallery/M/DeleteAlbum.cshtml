@@ -1,0 +1,29 @@
+﻿@model ITTNetSoc.Models.Album
+
+@{
+    ViewBag.Title = "DeleteAlbum";
+    Layout = "~/Views/Shared/M/_Layout.cshtml";
+}
+
+<h2>DeleteAlbum</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+
+
+    <div class="display-label" style="font-weight:bold">Album Name</div>
+    <div class="display-field">
+         @Html.DisplayFor(model => model.AlbumName)
+    </div>
+
+    <div class="display-label" style="font-weight:bold">Description</div>
+    <div class="display-field">
+         @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete Album" />
+        
+    </p>
+}

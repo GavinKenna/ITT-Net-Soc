@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ITTNetSoc.Models.UserProfile>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/M/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<ul data-role="listview" data-filter="true">
+
+@foreach (var user in Model)
+{
+ <!-- //Html.ActionLink(@user.DisplayName, "Details","UserProfile",new { id= user.Id}, new { data_role = "button", data_theme = "b", data_mini = "true" , data_icon="info"})
+    -->
+   <li data-filtertext=@user.DisplayName >  
+   <a href='../UserProfile/Details/@user.Id' class="ui-link-inherit"> 
+        <img src='/PICTURES/@user.Picture' class='ui-li-thumb' width='80' height='80'/>
+        <h3 class="ui-li-heading">@user.DisplayName</h3>
+        <p class="ui-li-desc">@user.Description</p>
+        
+   </a>
+   </li>
+}
+
+</ul>

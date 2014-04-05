@@ -1,0 +1,29 @@
+﻿@model ITTNetSoc.Models.Picture
+
+@{
+    ViewBag.Title = "DeletePicture";
+    Layout = "~/Views/Shared/M/_Layout.cshtml";
+}
+
+<h2>DeletePicture</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Picture</legend>
+
+    <div class="display-label">Source</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Source)
+    </div>
+
+    <div class="display-label">AlbumId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AlbumId)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

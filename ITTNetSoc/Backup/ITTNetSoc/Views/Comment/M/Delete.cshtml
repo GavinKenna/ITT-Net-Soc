@@ -1,0 +1,67 @@
+﻿@model ITTNetSoc.Models.Comments
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/M/_Layout.cshtml";
+}
+
+@{
+int itemID = int.Parse(Request.QueryString["itemID"]);
+string commentType = Request.QueryString["commentType"];
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+
+    <input type="hidden" id="itemID" name="itemID" value=@itemID /> <!--Quick hack to get the value passed. -->
+        <input type="hidden" id="commentType" name="commentType" value=@commentType /> <!--Quick hack to get the value passed. -->
+
+    <div class="display-label"><h3>ID</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.itemID)
+    </div>
+
+    <div class="display-label"><h3>Type</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.commentType)
+    </div>
+
+    <div class="display-label"><h3>Author</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.author)
+    </div>
+
+    <div class="display-label"><h3>AuthorID</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AuthorID)
+    </div>
+
+    <div class="display-label"><h3>Title</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.title)
+    </div>
+
+    <div class="display-label"><h3>Body</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.body)
+    </div>
+
+    <div class="display-label"><h3>Date</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.date)
+    </div>
+
+    <div class="display-label"><h3>Time</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.time)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" />
+    </p>
+    
+    <a href=@Request.UrlReferrer >Back</a>
+}

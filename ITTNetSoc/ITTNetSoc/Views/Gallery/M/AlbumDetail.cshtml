@@ -1,0 +1,90 @@
+﻿@model ITTNetSoc.Models.Album
+@{
+    ViewBag.Title = Model.AlbumName;
+  //  Layout = "_AlbumLayout.cshtml";
+    Layout = "~/Views/Shared/M/_Layout.cshtml";
+}
+@using ITTNetSoc.Models;
+@{CompSocEntities db = new CompSocEntities();}
+
+
+ 
+ <!--TODO : Change layout to main layout, add buttons such as add , edit, delete.-->
+<!--<script src="/Scripts/jquery.touch-gallery-1.0.0.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.touch-gallery-1.0.0.min.js" type="text/javascript"></script>-->
+
+<div class="display-field">
+        <h1>@Html.DisplayFor(model => model.AlbumName)</h1>
+</div>
+<div class="display-field">
+       <h4>@Html.DisplayFor(model => model.Description)</h4>
+</div>
+
+
+
+@foreach (ITTNetSoc.Models.Picture pic in ITTNetSoc.Controllers.GalleryController.PictureFromAlbum(Model.Id))
+{
+     <a href="#">
+     <img alt="Picture" src="@pic.Source" width = "90" height = "90" data-large="@pic.Source" />
+     </a>
+}
+
+
+    
+<script>
+          $('img[data-large]').touchGallery({
+              getSource: function () {
+                  return $(this).attr('data-large');
+              }
+          });
+</script> 
+
+
+<div id="CommentsSections" data-role="collapsible">
+    <h4>
+        User Comments</h4>
+    @if (ViewBag.userComments.Equals("No Comments"))
+    {
+    <br />
+        <p>
+            No Comments</p>
+    }
+    else
+    {
+        <ul data-role="listview" data-theme="c">
+        @foreach (Comments comment in ViewBag.userComments)
+        {
+        <li style="box-shadow: 10px 10px 5px #888888">
+        
+        <a href="/UserProfile/Details/@comment.AuthorID">
+            <img src='/PICTURES/@db.UserProfiles.Find(comment.AuthorID).Picture' width='80' height='80'/> 
+            <h3 class="ui-li-heading" >@comment.title by @comment.author </h3>
+            <p style="white-space:normal" >
+                    @comment.body.ToString()
+                    <br /><br /> <i>Posted on @comment.date @comment.time</i>
+            </p>
+                @if (User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Delete Comment", "Delete", "Comment", new { id = comment.commentID, itemID = Model.Id, commentType = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString() }, new { data_role = "button", data_theme = "c", data_mini = "true", data_icon = "delete" })
+                }
+           
+        </a>
+       
+        </li>
+        }
+        </ul>
+
+    }
+    @if (Membership.GetUser() != null)
+    {
+        <br />
+        @Html.ActionLink("Add Comment", "Create", "Comment", new { itemID = Model.Id, commentType = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString() }, new { data_role = "button", data_icon = "plus",data_inline = "true" })
+    }
+    else
+    {
+        <br />
+        <p>
+            You Must Log In To Write Comments
+        </p>
+    }
+</div>

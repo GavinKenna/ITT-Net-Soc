@@ -1,0 +1,101 @@
+﻿@model ITTNetSoc.Models.NewsItem
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/M/_Layout.cshtml";
+}
+@using ITTNetSoc.Models;
+@{CompSocEntities db = new CompSocEntities();}
+<h2>
+    Details</h2>
+<fieldset>
+    <legend>
+        <h2>
+            News Item Details:</h2>
+    </legend>
+    <div class="display-label">
+        <h3>
+            Headline:</h3>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Headline)
+    </div>
+    <div class="display-label">
+        <h3>
+            Author:</h3>
+    </div>
+    <div class="display-field">
+        @Html.ActionLink(Model.Author, "Details", "UserProfile", new { id = Model.AuthorID }, null)
+    </div>
+    <div class="display-label">
+        <h3>
+            Summary:</h3>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Summary)
+    </div>
+    <div class="display-label">
+        <h3>
+            Body:</h3>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Body)
+    </div>
+    <div class="display-label">
+        <h3>
+            NewsArtUrl:</h3>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NewsArtUrl)
+    </div>
+</fieldset>
+
+<div id="CommentsSections" data-role="collapsible">
+    <h4>
+        User Comments</h4>
+    @if (ViewBag.userComments.Equals("No Comments"))
+    {
+
+        <p>
+            No Comments</p>
+    }
+    else
+    {
+        <ul data-role="listview" data-theme="c">
+        @foreach (Comments comment in ViewBag.userComments)
+        {
+        <li style="box-shadow: 10px 10px 5px #888888">
+        
+        <a href="/UserProfile/Details/@comment.AuthorID">
+            <img src='/PICTURES/@db.UserProfiles.Find(comment.AuthorID).Picture' width='80' height='80'/> 
+            <h3 class="ui-li-heading" >@comment.title by @comment.author </h3>
+            <p style="white-space:normal" >
+                    @comment.body.ToString()
+                    <br /><br /> <i>Posted on @comment.date @comment.time</i>
+            </p>
+                @if (User.IsInRole("Administrator"))
+                {
+                    @Html.ActionLink("Delete Comment", "Delete", "Comment", new { id = comment.commentID, itemID = Model.Id, commentType = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString() }, new { data_role = "button", data_theme = "c", data_mini = "true", data_icon = "delete" })
+                }
+           
+        </a>
+       
+        </li>
+        }
+        </ul>
+
+    }
+    @if (Membership.GetUser() != null)
+    {
+        <p>
+        
+        </p>
+        @Html.ActionLink("Add Comment", "Create", "Comment", new { itemID = Model.Id, commentType = ViewContext.Controller.ValueProvider.GetValue("controller").RawValue.ToString() }, new { data_role = "button", data_icon = "plus",data_inline = "true" })
+    }
+    else
+    {
+        <br />
+        <p>
+            You Must Log In To Write Comments
+        </p>
+    }
+</div>

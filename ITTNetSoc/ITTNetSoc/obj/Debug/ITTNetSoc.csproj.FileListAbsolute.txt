@@ -1,0 +1,13 @@
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\ITTNetSoc.dll
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\ITTNetSoc.pdb
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\EntityFramework.dll
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\PagedList.dll
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\PagedList.Mvc.dll
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\System.Data.SqlServerCe.dll
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\System.Data.SqlServerCe.Entity.dll
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\EntityFramework.xml
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\PagedList.xml
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\bin\PagedList.Mvc.xml
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\obj\Debug\ITTNetSoc.dll
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\obj\Debug\ITTNetSoc.pdb
+C:\Users\Sean\Dropbox\College\Personal College\Year 3\Semester5\DMC\CA2\ITTNetSoc\ITTNetSoc\obj\Debug\ITTNetSoc.csprojResolveAssemblyReference.cache

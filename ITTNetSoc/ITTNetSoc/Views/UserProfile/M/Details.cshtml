@@ -1,0 +1,57 @@
+﻿@model ITTNetSoc.Models.UserProfile
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/M/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+
+    <div class="display-field">
+    <a href="#">
+        <img src='/PICTURES/@Model.Picture' width="120" height="120" data-large='/PICTURES/@Model.Picture'>
+        </a>
+    </div>
+
+   
+    <div class="display-label"><h3>Display Name</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DisplayName)
+    </div>
+
+    <div class="display-label"><h3>Department</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Department)
+    </div>
+
+    <div class="display-label"><h3>Year</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Year)
+    </div>
+
+    <div class="display-label"><h3>Description</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    
+</fieldset>
+<p>
+    
+    @Html.ActionLink("Back to List", "Index", null, new { data_role = "button", data_inline = "true", data_icon = "back", data_iconpos = "left" })
+        
+           @Html.ActionLink("Email This User", null, new { id = Model.Id }, new { data_role = "button", data_inline = "true", data_icon="info", href = "mailto:"+@Membership.GetUser(Guid.Parse(Model.AccountId)).Email}) 
+ 
+</p>
+
+
+ 
+<script>
+    $('img[data-large]').touchGallery({
+        getSource: function () {
+            return $(this).attr('data-large');
+        }
+    });
+</script> 

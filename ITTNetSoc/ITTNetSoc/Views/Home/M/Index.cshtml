@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/M/_Layout.cshtml";
+}
+
+<section class="content">
+<header>
+<div style="width:100%; text-align:center">
+    <img alt="logo" src="../../../images/netsoclogo.png" width="90%" height="40%"/>
+</div>
+
+</header>
+
+
+
+   <ul data-role="listview">
+	<li>@Html.ActionLink("News", "Index", "News")</li>
+	<li>@Html.ActionLink("Events", "Index", "Events")</li>
+    <li>@Html.ActionLink("Users", "Index", "UserProfile")</li>
+    <li>@Html.ActionLink("Gallery", "Index", "Gallery")</li>
+	<li>@Html.ActionLink("About", "About", "Home")</li>
+    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+</ul>
+
+</section>
